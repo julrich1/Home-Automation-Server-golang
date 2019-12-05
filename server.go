@@ -9,10 +9,11 @@ import (
 	"net/http"
 	"strconv"
 
+	apikeys "home-server/api-keys"
+
 	"github.com/evalphobia/google-home-client-go/googlehome"
 )
 
-const twitchAPIKey = ""
 const twitchUserID = "8095777"
 const followedStreamersURL = "https://api.twitch.tv/helix/users/follows?from_id=" + twitchUserID + "&first=100"
 const streamStatusURL = "https://api.twitch.tv/helix/streams"
@@ -34,7 +35,7 @@ type OnlineUsersResponse struct {
 
 func fetchTwitchFollows(client http.Client) (TwitchFollowsResponse, error) {
 	req, _ := http.NewRequest("GET", followedStreamersURL, nil)
-	req.Header.Set("Client-ID", twitchAPIKey)
+	req.Header.Set("Client-ID", apikeys.TwitchAPIKey)
 
 	var twitchFollowersData TwitchFollowsResponse
 
@@ -62,7 +63,7 @@ func fetchTwitchFollows(client http.Client) (TwitchFollowsResponse, error) {
 
 func fetchTwitchStreamersStatus(client http.Client, twitchFollowsResponse TwitchFollowsResponse) (OnlineUsersResponse, error) {
 	streamStatusRequest, error := http.NewRequest("GET", streamStatusURL, nil)
-	streamStatusRequest.Header.Set("Client-ID", twitchAPIKey)
+	streamStatusRequest.Header.Set("Client-ID", apikeys.TwitchAPIKey)
 
 	var onlineUsersResponse OnlineUsersResponse
 
