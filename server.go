@@ -12,7 +12,7 @@ import (
 	"github.com/evalphobia/google-home-client-go/googlehome"
 )
 
-const twitchAPIKey = "erp2w6btk72ela0rjmpcuky84vom50"
+const twitchAPIKey = ""
 const twitchUserID = "8095777"
 const followedStreamersURL = "https://api.twitch.tv/helix/users/follows?from_id=" + twitchUserID + "&first=100"
 const streamStatusURL = "https://api.twitch.tv/helix/streams"
